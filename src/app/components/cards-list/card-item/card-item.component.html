@@ -1,1 +1,19 @@
-<p>card-item works!</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ player.name }}</mat-card-title>
+    <mat-card-subtitle
+      >{{ player.gender }} ⚫ {{ player.position }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <img mat-card-image [src]="player.imgUrl" alt="{{ player.name }}" />
+  <mat-card-content>
+    <p>
+      El futbolista {{ player.nationality }}, {{ player.name }} nació el
+      {{ player.birthDate }}. Su posición actual en este deporte es
+      {{ player.position }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="right">
+    <button mat-button color="primary">VER DETALLES</button>
+  </mat-card-actions>
+</mat-card>

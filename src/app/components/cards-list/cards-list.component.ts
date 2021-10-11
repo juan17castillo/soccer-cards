@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Player } from 'src/models/Player.model';
+import { SoccerCardsService } from './soccer-cards.service';
 
 @Component({
   selector: 'app-cards-list',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsListComponent implements OnInit {
 
-  constructor() { }
+  players: Player[];
+  private playersSub: Subscription;
+
+  constructor(private soccerCardsService: SoccerCardsService) { }
 
   ngOnInit(): void {
+    this.players = this.soccerCardsService.getPlayers();
+    this.playersSub = this.soccerCardsService.playersEvent.subscribe((players: Player[]) => {
+      this.players = players;
+    })
   }
 
 }

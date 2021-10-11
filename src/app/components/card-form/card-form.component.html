@@ -1,1 +1,113 @@
-<p>card-form works!</p>
+<form
+  class="form-container"
+  [formGroup]="addPlayerForm"
+  (ngSubmit)="onSubmit(f)" #f="ngForm"
+>
+  <mat-card class="example-card" align="center">
+    <mat-card-title> Añadir jugador </mat-card-title>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input matInput placeholder="Nombres" formControlName="name" />
+            <mat-error
+              *ngIf="
+                addPlayerForm.get('name').invalid &&
+                addPlayerForm.get('name').dirty
+              "
+              >Ingresa un nombre correcto</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Posición</mat-label>
+            <mat-select formControlName="position" name="Posición">
+              <mat-option
+                *ngFor="let position of positions"
+                [value]="position.value"
+              >
+                {{ position.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Nacionalidad"
+                formControlName="nationality"
+              />
+            </mat-form-field>
+
+            <mat-error
+              *ngIf="
+                addPlayerForm.get('nationality').invalid &&
+                addPlayerForm.get('nationality').dirty
+              "
+              >Ingresa una nacionalidad válida</mat-error
+            >
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" />
+            </mat-form-field>
+            <mat-error
+              *ngIf="
+                addPlayerForm.get('email').invalid &&
+                addPlayerForm.get('email').dirty
+              "
+              >Ingresa un email correcto</mat-error
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 mt-3">
+            <mat-radio-group class="margin-left" formControlName="gender">
+              <mat-radio-button *ngFor="let gender of genders" [value]="gender">
+                {{ gender }}</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Fecha de nacimiento</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="birthdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Imagen de perfil (url)"
+                formControlName="imgUrl"
+              />
+            </mat-form-field>
+            <mat-error
+              *ngIf="
+                addPlayerForm.get('imgUrl').invalid &&
+                addPlayerForm.get('imgUrl').dirty
+              "
+              >Ingresa un url de imagen correcto</mat-error
+            >
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button color="warn" mat-raised-button>Cancelar</button>
+      <button color="primary" mat-raised-button type="submit">Guardar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
