@@ -11,8 +11,6 @@ import { DatePipe } from '@angular/common';
 export class CardFormComponent implements OnInit {
   genders: string[] = ['Masculino', 'Femenino'];
   positions: Position[] = [];
-  PROFILE_PIC =
-    'https://maricarmencamacho.com/wp-content/uploads/2021/01/defaultProfile.jpg';
   addPlayerForm: FormGroup;
 
   constructor(
@@ -56,7 +54,7 @@ export class CardFormComponent implements OnInit {
       nationality: value.nationality,
       email: value.email,
       gender: value.gender,
-      imgUrl: value.imgUrl ? null : this.PROFILE_PIC,
+      imgUrl: value.imgUrl,
       birthDate: this.datePipe.transform(value.birthdate, 'dd/MM/yyyy'),
     };
     this.soccerCardsService.addPlayer(newPlayer);

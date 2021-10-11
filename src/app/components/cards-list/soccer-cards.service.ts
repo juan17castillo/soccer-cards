@@ -73,7 +73,8 @@ export class SoccerCardsService {
   ];
 
   getPlayers() {
-    return this.players.slice();
+    if (!localStorage.getItem("players")) localStorage.setItem('players', JSON.stringify(this.players.slice()));
+    return JSON.parse(localStorage.getItem("players"));
   }
 
   getPositions() {
@@ -82,6 +83,7 @@ export class SoccerCardsService {
 
   addPlayer(player: Player) {
     this.players.push(player);
+    localStorage.setItem('players', JSON.stringify(this.players.slice()));
     this.playersEvent.next(this.players.slice());
   }
 }

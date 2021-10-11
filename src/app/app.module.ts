@@ -20,8 +20,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatSelectModule} from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DetailDialogComponent } from './components/detail-dialog/detail-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import {MatSelectModule} from '@angular/material/select';
     CardItemComponent,
     ToolbarComponent,
     CardFormComponent,
+    DetailDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,8 +50,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
+  entryComponents: [DetailDialogComponent],
   providers: [MatDatepickerModule, DatePipe],
   bootstrap: [AppComponent],
 })
